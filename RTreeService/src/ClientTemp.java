@@ -48,6 +48,7 @@ public class ClientTemp extends Thread {
 	}
 	public static void main(String[] args) {
 		ClientTemp client = new ClientTemp("127.0.0.1", Constant.PORT);
+		/*
 		client.ACT001_writeMsg("0\n");
 		client.ACT001_writeMsg("1#0#0#0#0#0xASJDJFFF001#2001/5/6#http://apple.com#cat\n");
 		client.ACT001_writeMsg("1#2#2#2#2#0xASJDJFFF001#2051/5/6#http://www.google.com.tw#car\n");
@@ -62,6 +63,7 @@ public class ClientTemp extends Thread {
 		client.ACT001_writeMsg("1#6#6#6#6#0xASJDJFFF001#25601/5/6#http://www.google.com.tw#sun\n");
 		client.ACT001_writeMsg("2#0#0#4#4\n");
 		client.ACT001_writeMsg("3\n");
+		*/
 		client.ACT001_writeMsg("4\n");
 	}
 }

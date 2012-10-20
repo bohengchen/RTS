@@ -33,11 +33,14 @@ public class ServerTemp extends Thread{
 	}
 	
 	public void run(){
-		try {
-			Socket clientSocket = serverSocket.accept();
-			new RTREEService(clientSocket);
-		} catch (IOException e) {
-			e.printStackTrace();
+		while(!this.serverSocket.isClosed())
+		{
+			try {
+				Socket clientSocket = serverSocket.accept();
+				new RTREEService(clientSocket);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 	public static void main(String[] args) {
