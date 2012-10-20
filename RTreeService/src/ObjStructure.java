@@ -187,8 +187,8 @@ class HashObjStr extends Hashtable<String, ObjStructure> {
 			String[] str = this.groupList.get(i).split("#");
 			String[] ids = str[0].split(",");
 			
-			totalCenterX += Float.parseFloat(ids[0])*(float)this.group_count.get(i) ;
-			totalCenterY += Float.parseFloat(ids[1])*(float)this.group_count.get(i) ;
+			totalCenterX += Float.parseFloat(ids[0]) ;
+			totalCenterY += Float.parseFloat(ids[1]) ;
 		}
 		
 		totalCenter[0] = totalCenterX / (float)(this.groupList.size()) ;
