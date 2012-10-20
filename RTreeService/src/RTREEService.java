@@ -4,6 +4,8 @@ import java.io.OutputStream;
 import java.net.Socket;
 import java.util.List;
 
+import MySQL.MainSqlOper;
+
 import com.infomatiq.jsi.Rectangle;
 import com.infomatiq.jsi.SpatialIndex;
 import com.infomatiq.jsi.rtree.RTree;
@@ -32,6 +34,8 @@ public class RTREEService extends Thread
 			break;
 		case Constant.RULE_QUERY:
 			this.ACT004_doRangeQuery(getMsg);
+		case Constant.RULE_STORE_DATABASE:
+			this.ACT006_addtoMySQL();
 			break;
 		}
 	}
@@ -90,10 +94,11 @@ public class RTREEService extends Thread
 	public void ACT006_addtoMySQL()
 	{
 		MainSqlOper mso = new MainSqlOper();
+		mso.ACT005_dropAll();
 		for(int i = 0;i < this.hash.numofGroup();i++)
 			for(int j = 0;j < this.hash.numofGroupid(i);j++)
 				mso.ACT004_allInsert(this.hash.ACT009_getInformation(i, j));
-		mso.getTableResult();
+		System.out.print(mso.ACT003_getTableResult());
 	}
 	public void run()
 	{

@@ -4,4 +4,5 @@ public class Constant {
 	public static final char RULE_INITIAL = '0';
 	public static final char RULE_INSERT = '1';
 	public static final char RULE_QUERY = '2';
+	public static final char RULE_STORE_DATABASE = '3';
 }
