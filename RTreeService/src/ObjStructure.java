@@ -43,20 +43,21 @@ public class ObjStructure {
 	}
 	public static void main(String[] args) {
 		HashObjStr str = new HashObjStr();
-		str.ACT003_add("0.01", "0.02", "ID1", "objID1", "20110101", "jdoaoafd", "flower");
-		str.ACT003_add("0.05", "0.04", "ID2", "objID1", "20110101", "jdoaoafd", "flower");
-		str.ACT003_add("0.02", "0.015", "ID3", "objID1", "20110101", "jdoaoafd", "flower");
-		str.ACT003_add("0.10", "0.04", "ID4", "objID1", "20110101", "jdoaoafd", "flower");
-		str.ACT003_add("0.11", "0.05", "ID5", "objID1", "20110101", "jdoaoafd", "flower");
-		str.ACT003_add("0.12", "0.09", "ID6", "objID1", "20110101", "jdoaoafd", "flower");
-		str.ACT003_add("0.01", "0.02", "ID7", "objID1", "20110101", "jdoaoafd", "flower");
-		str.ACT005_listPrint();
-		str.ACT007_getTotalCenter();
-		//str.ACT008_testCount();
-		float[] str1 = str.ACT006_getXY(0);
-		float[] str2 = str.ACT006_getXY(1);
-		String[] id1 = str.ACT004_getID(0);
-		String[] id2 = str.ACT004_getID(1);
+		str.ACT003_add("0.01", "0.02", "ID1", "objID0", "20110101", "jdoaoafd", "flower0");
+		str.ACT003_add("0.05", "0.04", "ID2", "objID1", "20110101", "jdoaoafd", "flower1");
+		str.ACT003_add("0.02", "0.015", "ID3", "objID2", "20110101", "jdoaoafd", "flower2");
+		str.ACT003_add("0.10", "0.04", "ID4", "objID3", "20110101", "jdoaoafd", "flower0");
+		str.ACT003_add("0.11", "0.05", "ID5", "objID4", "20110101", "jdoaoafd", "flower1");
+		str.ACT003_add("0.12", "0.09", "ID6", "objID5", "20110101", "jdoaoafd", "flower2");
+		str.ACT003_add("0.01", "0.02", "ID7", "objID6", "20110101", "jdoaoafd", "flower0");
+		for(int i = 0;i < str.numofGroup();i++)
+		{
+			for(int j = 0;j < str.numofGroupid(i);j++)
+			{
+				str.test(str.ACT009_getInformation(i, j));
+				System.out.println("-------------------------");
+			}
+		}
 	}
 }
 
@@ -64,7 +65,7 @@ public class ObjStructure {
 
 class HashObjStr extends Hashtable<String, ObjStructure> {
 	float threshold = 0.02f;
-	private List<String> groupList = new ArrayList<String>();
+	private List<String> groupList = new ArrayList<String>();   //group-> group center # ids
 	private List<Integer> group_count = new ArrayList<Integer>();
 	
 	//build hash
@@ -200,9 +201,59 @@ class HashObjStr extends Hashtable<String, ObjStructure> {
 	{
 		
 		for(int i = 0; i < this.groupList.size();i++)
-		{				
+		{	
 			System.out.println("count: "+this.group_count.get(i));
 		}
+	}
+	
+	public String[] ACT009_getInformation(int groupNum ,int id)
+	{
+		Integer gNum = groupNum ;
+		String[] informationList = new String[8];
+		informationList[0] = gNum.toString();	//group number
+		informationList[6] = "-1";//default -1
+		informationList[7] = "-1";
+		String[] Center_ID = this.groupList.get(groupNum).split("#");
+		String Center = Center_ID[0];
+		String[] XY = Center.split(",");
+		String X = XY[0];
+		String Y = XY[1];
+		String[] IDs = Center_ID[1].split(",");
+		String idstr = IDs[id];
+		informationList[1] = this.get(idstr).GET002_ObjID();// photoid
+		informationList[2] = this.get(idstr).GET003_TakenTime(); // takentime
+		informationList[3] = this.get(idstr).GET004_ImgWebSite(); //URL
+		informationList[4] = Y;// longitude
+		informationList[5] = X;// latitude
+		return informationList;
+	}
+	
+	public void test(String[] st)
+	{
+		for (int i = 0; i < st.length ;i++)
+		{
+			System.out.println(st[i]);
+		}
+	}
+	
+	
+	public int numofGroup()
+	{
+		return group_count.size();
+	}
+	public int numofGroupid(int group)
+	{
+		String[] s = groupList.get(group).split("#");
+		String[] s2 = s[1].split(",");
+		return s2.length;
+	}
+	
+	// clear all
+	public void clearList()
+	{
+		this.clear();
+		this.groupList.clear();
+		this.group_count.clear();
 	}
 	
 }

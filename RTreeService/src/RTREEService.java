@@ -87,6 +87,14 @@ public class RTREEService extends Thread
 			e.printStackTrace();
 		}
 	}
+	public void ACT006_addtoMySQL()
+	{
+		MainSqlOper mso = new MainSqlOper();
+		for(int i = 0;i < this.hash.numofGroup();i++)
+			for(int j = 0;j < this.hash.numofGroupid(i);j++)
+				mso.ACT004_allInsert(this.hash.ACT009_getInformation(i, j));
+		mso.getTableResult();
+	}
 	public void run()
 	{
 		String strMessage = null;
