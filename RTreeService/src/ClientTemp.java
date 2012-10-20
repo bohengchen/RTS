@@ -62,5 +62,6 @@ public class ClientTemp extends Thread {
 		client.ACT001_writeMsg("1#6#6#6#6#0xASJDJFFF001#25601/5/6#http://www.google.com.tw#sun\n");
 		client.ACT001_writeMsg("2#0#0#4#4\n");
 		client.ACT001_writeMsg("3\n");
+		client.ACT001_writeMsg("4\n");
 	}
 }

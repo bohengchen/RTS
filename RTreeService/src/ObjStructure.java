@@ -4,7 +4,7 @@ import java.util.List;
 
 
 public class ObjStructure {
-	final String delama = "^"; //the string for separating each value
+	final String delama = "#"; //the string for separating each value
 	String objID = null;  //the ID of this object
 	String takenTime = null;  //taken time of the picture
 	String imgWebSite = null;  //the picture web site

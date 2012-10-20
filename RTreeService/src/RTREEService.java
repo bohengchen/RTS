@@ -37,6 +37,9 @@ public class RTREEService extends Thread
 		case Constant.RULE_STORE_DATABASE:
 			this.ACT006_addtoMySQL();
 			break;
+		case Constant.RULE_QUERY_DATABASE:
+			this.ACT007_getAllDatabaseCont();
+			break;
 		}
 	}
 	
@@ -98,7 +101,13 @@ public class RTREEService extends Thread
 		for(int i = 0;i < this.hash.numofGroup();i++)
 			for(int j = 0;j < this.hash.numofGroupid(i);j++)
 				mso.ACT004_allInsert(this.hash.ACT009_getInformation(i, j));
-		System.out.print(mso.ACT003_getTableResult());
+		mso.Close();
+	}
+	public void ACT007_getAllDatabaseCont()
+	{
+		MainSqlOper mso = new MainSqlOper();
+		this.ACT005_writeMsg(mso.ACT003_getTableResult());
+		mso.Close();
 	}
 	public void run()
 	{
