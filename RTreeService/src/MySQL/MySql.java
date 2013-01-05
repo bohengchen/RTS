@@ -21,8 +21,8 @@ public class MySql {
       Class.forName("com.mysql.jdbc.Driver"); 
       //µù¥Udriver 
       con = DriverManager.getConnection( 
-      "jdbc:mysql://localhost/test?useUnicode=true&characterEncoding=Big5", 
-      "root",""); 
+      "jdbc:mysql://192.168.1.160:3307/test?useUnicode=true&characterEncoding=Big5", 
+      "mysql","YOH6"); 
       //¨ú±oconnection
 
 //jdbc:mysql://localhost/test?useUnicode=true&characterEncoding=Big5
